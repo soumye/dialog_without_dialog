@@ -80,6 +80,7 @@ assert len(val1_ixs) + len(val2_ixs) == len(val_ixs)
 assert len(val1_img_ids) + len(val2_img_ids) == len(val_img_ids)
 # how many examples have a 
 def count_questions_with_diff_ans(ixs):
+    import ipdb;ipdb.set_trace()
     N = len(ixs)
     count = 0
     for ix in ixs:
@@ -88,9 +89,9 @@ def count_questions_with_diff_ans(ixs):
             count += 1
     return f'{count} / {N} = {count / N}'
 assert len(val1_img_ids.intersection(val2_img_ids)) == 0
-print(f'train diff ans questions: {count_questions_with_diff_ans(train_ixs)}')
-print(f'val1 diff ans questions: {count_questions_with_diff_ans(val1_ixs)}')
-print(f'val2 diff ans questions: {count_questions_with_diff_ans(val2_ixs)}')
+#print(f'train diff ans questions: {count_questions_with_diff_ans(train_ixs)}')
+#print(f'val1 diff ans questions: {count_questions_with_diff_ans(val1_ixs)}')
+#print(f'val2 diff ans questions: {count_questions_with_diff_ans(val2_ixs)}')
 
 # convert ixs to image_ids
 train_img_ids = sorted(list(set([questions[ix]['image_id'] for ix in train_ixs])))

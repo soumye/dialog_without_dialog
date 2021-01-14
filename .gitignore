@@ -37,3 +37,4 @@ coco-caption/annotations
 coco-caption/annotations/
 
 .mturk_keys.json
+cache

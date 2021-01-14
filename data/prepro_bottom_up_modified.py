@@ -10,10 +10,16 @@ import pdb
 
 inputJson = 'v2_vqa_info.json'
 bottomupJson = 'train36_imgid2idx.pkl'
+bottomupJson_val = 'val36_imgid2idx.pkl'
 imagePath = 'train36.hdf5'
 
 info = json.load(open(inputJson, 'r'))
-bottomupJson = pickle.load(open(bottomupJson,'rb'))
+bottomupJson_train = pickle.load(open(bottomupJson,'rb'))
+bottomupJson_val = pickle.load(open(bottomupJson_val,'rb'))
+
+# Joined Dictionary
+bottomupJson = {**bottomupJson_train, **bottomupJson_val}
+
 imgFile = h5py.File(imagePath, 'r')
 
 # Data heavy
@@ -21,7 +27,7 @@ imgFile = h5py.File(imagePath, 'r')
 # image_bb = imgFile['image_bb'][:]
 # spatial_features = imgFile['spatial_features'][:]
 
-h_train = h5py.File('img_bottom_up.h5', "w")
+h_train = h5py.File('img_bottom_up_new.h5', "w")
 
 
 train_img_features = h_train.create_dataset(
@@ -35,7 +41,9 @@ train_counter = 0
 
 for img in info['unique_image']:
         image_id = int(img)
+        # if image_id in bottomupJson.keys():
         idx = bottomupJson[image_id]
+
         train_img_features[train_counter,:,:] = imgFile['image_features'][idx]
         train_img_bb[train_counter,:,:] = imgFile['image_bb'][idx]
         train_spatial_img_features[train_counter,:,:] = imgFile['spatial_features'][idx]
@@ -45,7 +53,7 @@ for img in info['unique_image']:
         # train_spatial_img_features[train_counter,:,:] = spatial_features[idx]
         train_counter += 1
 
-
+    
 print(train_counter)
 h_train.close()
 print("done!")

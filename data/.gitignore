@@ -22,3 +22,13 @@ cub_pool_info_v1.pkl
 awa_meta.json
 awa_pool_info_v1.pkl
 AWA_train36.hdf5
+
+bottom-up-attention-vqa/
+stanford-corenlp-4.2.0/
+*.props
+glove/
+*.npy
+old/
+zips/
+trainval_36/
+*.pkl

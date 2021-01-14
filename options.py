@@ -14,8 +14,10 @@ def readCommandLine(argv=None):
     # Data input settings
     parser.add_argument('-dataset', default='VQA', choices=['VQA', 'CUB', 'AWA'])
     # VQA
-    parser.add_argument('-inputImg', default='data/img_bottom_up_gzip1_chunked1.h5',
+    parser.add_argument('-inputImg', default='data/img_bottom_up.h5',
                             help='HDF5 file with image features')
+    #parser.add_argument('-inputImg', default='data/img_bottom_up_gzip1_chunked1.h5',
+    #                        help='HDF5 file with image features')
     parser.add_argument('-inputQues', default='data/v2_vqa_data.h5',
                             help='HDF5 file with preprocessed questions')
     parser.add_argument('-inputJson', default='data/v2_vqa_info.json',
@@ -213,8 +215,10 @@ def readCommandLine(argv=None):
 
     # Other training environmnet settings
     parser.add_argument('-useGPU', action='store_true', help='Use GPU or CPU')
-    parser.add_argument('-numWorkers', default=20, type=int,
+    parser.add_argument('-numWorkers', default=1, type=int,
                             help='Number of worker threads in dataloader')
+    #parser.add_argument('-numWorkers', default=20, type=int,
+    #                        help='Number of worker threads in dataloader')
     parser.add_argument('-useRedis', default=0, type=int,
                         help='set to 1 to store dataset in redis memory '
                              '(requires configuring redis instance)')

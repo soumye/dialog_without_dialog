@@ -994,13 +994,12 @@ def eval_config(eval_code, ):
     batch_index = ''
     eval_split = ''
     eval_inf = ''
-
     # compute final metrics on val
     if eval_vers[0] == 1:
         assert args.mode == 'analyze'
         # provide a default abot if not set by vers[:]
         if vers[0] in [7, 15]:
-            abot = '-astartFrom data/experiments/exp2.0.0/abot_ep_15.vd'
+            abot = '-astartFrom data/experiments/exp2.0.0.0/abot_ep_15.vd'
         batch = '-batchSize 256'
         rounds = '-maxRounds 5'
         lm = '-languageModel data/experiments/exp18.0.0.-2/lm_ep_3.vd'
@@ -1071,7 +1070,7 @@ def eval_config(eval_code, ):
         if vers[0] == 15:
             rounds = '-maxRounds 5'
         if vers[0] in [7, 15]:
-            abot = '-astartFrom data/experiments/exp2.0.0/abot_ep_15.vd'
+            abot = '-astartFrom data/experiments/exp2.0.0.0/abot_ep_15.vd'
         batch_index = f'-batchIndex {eval_vers[1]}'
         # default to whatever the exp was trained with
         if eval_vers[2] == 4:
@@ -1100,7 +1099,7 @@ def eval_config(eval_code, ):
         assert args.mode == 'analyze'
         # provide a default abot if not set by vers[:]
         if vers[0] in [15]:
-            abot = '-astartFrom data/experiments/exp2.0.0/abot_ep_15.vd'
+            abot = '-astartFrom data/experiments/exp2.0.0.0/abot_ep_15.vd'
         batch = '-batchSize 256'
         rounds = '-maxRounds 5'
         if dataset_id == 'VQA':
